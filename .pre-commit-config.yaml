@@ -1,0 +1,78 @@
+# Install once per clone (worktrees share it):
+#   uv tool install pre-commit && pre-commit install
+default_install_hook_types: [pre-commit, commit-msg, pre-push]
+default_stages: [pre-commit]
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: no-ai-co-author
+        name: no AI co-author line
+        entry: '(?i)^co-authored-by:.*(claude|anthropic)'
+        language: pygrep
+        stages: [commit-msg]
+
+      - id: ruff
+        name: ruff (lint and format check)
+        entry: uv run --directory backend ruff check .
+        language: system
+        files: ^backend/.*\.py$
+        pass_filenames: false
+      - id: ruff-format
+        name: ruff format check
+        entry: uv run --directory backend ruff format --check .
+        language: system
+        files: ^backend/.*\.py$
+        pass_filenames: false
+      - id: mypy
+        name: mypy
+        entry: uv run --directory backend mypy .
+        language: system
+        files: ^backend/.*\.py$
+        pass_filenames: false
+      - id: bandit
+        name: bandit
+        entry: uv run --directory backend bandit -r app -q
+        language: system
+        files: ^backend/app/.*\.py$
+        pass_filenames: false
+      - id: oxlint
+        name: oxlint (frontend lint)
+        entry: pnpm --dir frontend lint
+        language: system
+        files: ^frontend/.*\.(ts|tsx|js|css)$
+        pass_filenames: false
+      - id: tsc
+        name: tsc
+        entry: pnpm --dir frontend exec tsc --noEmit
+        language: system
+        files: ^frontend/.*\.(ts|tsx|js|css)$
+        pass_filenames: false
+
+      # Push-stage checks
+      - id: semgrep
+        name: semgrep
+        entry: uvx semgrep@1.187.0 scan --config p/default --error --metrics=off --quiet
+        language: system
+        stages: [pre-push]
+        pass_filenames: false
+        always_run: true
+      - id: pytest
+        name: backend tests (needs the database containers)
+        entry: uv run --directory backend pytest -q
+        language: system
+        stages: [pre-push]
+        pass_filenames: false
+        files: ^backend/.*\.py$
+      - id: frontend-build
+        name: frontend production build
+        entry: pnpm --dir frontend build
+        language: system
+        stages: [pre-push]
+        pass_filenames: false
+        files: ^frontend/.*\.(ts|tsx)$
