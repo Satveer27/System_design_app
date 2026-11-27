@@ -1,7 +1,8 @@
 ---
 name: backend-reviewer
 description: Reviews pull requests for backend issues. Use when a PR labelled backend is ready for review.
-model: sonnet
+model: opus
+effort: medium
 tools: Read, Grep, Glob, Bash
 ---
 
