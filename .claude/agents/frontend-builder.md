@@ -2,6 +2,7 @@
 name: frontend-builder
 description: Implements one GitHub issue labelled frontend (React UI, analytics pages, Plans, tier lists) in its own worktree against already-merged backend endpoints, then opens a PR. Also addresses review comments on its own PR.
 model: sonnet
+effort: medium
 mcpServers:
   - shadcn:
       type: stdio

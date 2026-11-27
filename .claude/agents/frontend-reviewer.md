@@ -1,7 +1,8 @@
 ---
 name: frontend-reviewer
 description: Reviews pull requests for frontend issues, including a visual check in a real browser. Use when a PR labelled frontend is ready for review.
-model: sonnet
+model: opus
+effort: medium
 disallowedTools: Edit, Write, NotebookEdit
 ---
 

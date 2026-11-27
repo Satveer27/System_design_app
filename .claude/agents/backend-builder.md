@@ -2,6 +2,7 @@
 name: backend-builder
 description: Implements one GitHub issue labelled backend (API, data pipeline, ML, migrations) in its own worktree, then opens a PR. Also addresses review comments on its own PR.
 model: sonnet
+effort: medium
 disallowedTools: Skill
 ---
 
