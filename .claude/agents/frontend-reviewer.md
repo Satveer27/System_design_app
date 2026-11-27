@@ -63,6 +63,8 @@ PR), and if the PR added a migration, `uv run alembic downgrade -1` so the revie
 - Loading, empty and error states exist.
 
 ### 3. Code
+- Readability: unclear names, bloated or over-abstracted code, dead code, or AI attribution in a
+  commit, PR, issue or comment is blocking.
 - Comments only help a reader understand the code. A comment that justifies a decision or
   claims the code is correct or safe is blocking, and so is a `Co-Authored-By` AI line in a commit.
 - Uses generated API types from `src/api/`; no hand-written response types,

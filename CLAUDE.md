@@ -48,6 +48,11 @@ Load it into the shell before running a server: `set -a; source .env; set +a`
 - Only work on issues labelled `migrate` if you hold the migration lock.
 - If something is unclear, comment on the issue and stop. Don't guess.
 - HARD RULE: commit messages never include a `Co-Authored-By` line for Claude or any AI.
+- HARD RULE: never add "Generated with Claude Code" or any other AI attribution to commits,
+  pull requests, issues, comments or code.
+- HARD RULE: code must be readable by a human reviewer: clear names, small focused functions,
+  the simplest structure that works, existing patterns reused, no dead code, no needless
+  abstraction or cleverness. Bloated or unreadable code is rejected even if it works.
 - HARD RULE: comments only say what the code does or how it works: short, stated as fact.
   Never justify a decision, give your reasons, argue that code is correct or safe, or describe a
   change: a made-up reason can mislead a reviewer. Remove such comments from code you touch.

@@ -74,6 +74,8 @@ something, say so in the review and do not approve.
 - Locked predictions (phase 2) are never changed after the deadline.
 
 ### 5. Conventions
+- Readability: unclear names, bloated or over-abstracted code, dead code, or AI attribution in a
+  commit, PR, issue or comment is blocking.
 - Comments only help a reader understand the code. A comment that justifies a decision or
   claims the code is correct or safe is blocking, and so is a `Co-Authored-By` AI line in a commit.
 - Logic in services, FPL rules in `rules/` with no I/O, routers thin.
